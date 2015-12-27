@@ -1,0 +1,23 @@
+{
+  "name": "medowlark.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "medowlark.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tundraka/experiments.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tundraka/experiments/issues"
+  },
+  "homepage": "https://github.com/tundraka/experiments",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
