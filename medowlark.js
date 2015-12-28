@@ -1,37 +1,57 @@
 var express = require('express');
-var handlebars = require('express-handlebars').create({defaultLayout: 'main'});
+// To set the extension to .hbs:
+// https://github.com/ericf/express-handlebars#extnamehandlebars
+var handlebars = require('express-handlebars').create({
+    defaultLayout: 'main',
+    extname: '.hbs'
+});
 var app = express();
 
-app.engine('handlebars', handlebars.engine);
+// fortunes
+var fortunes = [
+    'Conquer your fears or they will conquer you',
+    'Rivers need springs',
+    'Do not fear what you don\'t know',
+    'Whenever possible, keep it simple'
+];
 
 app.set('port', process.env.PORT || 3000);
-app.set('view engine', 'handlebars');
+
+// And from the note in github:
+// "Setting the app's "view engine" setting will make that value the default
+// file extension used for looking up views."
+app.engine('.hbs', handlebars.engine);
+app.set('view engine', '.hbs'); // and here too.
+//app.set('view cache');
+
+// static middleware
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
     // no status since express defaults to 200
-    res.type('text/plain');
-    res.send('Medowlark travel');
+    res.render('home');
 });
 
 app.get('/about', function(req, res) {
-    res.type('text/plain');
-    res.send('About');
+    var selectedFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+    res.render('about', {
+        title: 'Medowlark: about',
+        fortune: selectedFortune
+    });
 });
 
 // 404
 app.use(function(req, res, next) {
-    res.type('text/plain');
     res.status(404);
-    res.send('404: Not found');
+    res.render('404');
 });
 
 // 500
 app.use(function(err, req, res, next) {
     console.log(err);
 
-    res.type('text/plain');
     res.status(500);
-    res.send('500: Internal server error');
+    res.render('500');
 });
 
 app.listen(app.get('port'), function() {
