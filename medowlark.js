@@ -5,15 +5,8 @@ var handlebars = require('express-handlebars').create({
     defaultLayout: 'main',
     extname: '.hbs'
 });
+var fortune = require('./lib/fortune');
 var app = express();
-
-// fortunes
-var fortunes = [
-    'Conquer your fears or they will conquer you',
-    'Rivers need springs',
-    'Do not fear what you don\'t know',
-    'Whenever possible, keep it simple'
-];
 
 app.set('port', process.env.PORT || 3000);
 
@@ -27,16 +20,24 @@ app.set('view engine', '.hbs'); // and here too.
 // static middleware
 app.use(express.static(__dirname + '/public'));
 
+app.use(function(req, res, next) {
+    res.locals.showTests = app.get('env') !== 'production' && 
+        req.query.test === '1';
+    next();
+});
+
 app.get('/', function(req, res) {
     // no status since express defaults to 200
-    res.render('home');
+    res.render('home', {
+        title: 'Medowlark: home',
+    });
 });
 
 app.get('/about', function(req, res) {
-    var selectedFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
     res.render('about', {
         title: 'Medowlark: about',
-        fortune: selectedFortune
+        fortune: fortune.getFortune(),
+        pageTestScript: '/qa/about.js'
     });
 });
 

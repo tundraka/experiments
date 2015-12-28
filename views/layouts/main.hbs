@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>{{title}}</title>
+    {{#if showTests}}
+        <link rel="stylesheet" href="/vendor/mocha.css">
+    {{/if}}
 </head>
 <body>
 
@@ -10,6 +13,30 @@
         <img src="/img/queenii.jpg" alt="Medowlark logo" height="50">
     </header>
     {{{body}}}
+
+    {{#if showTests}}
+    <div id="mocha"></div>
+
+    <script src="https://cdn.rawgit.com/jquery/jquery/2.1.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/Automattic/expect.js/0.3.1/index.js"></script>
+    <script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
+    <script src="https://cdn.rawgit.com/chaijs/chai/3.4.2/chai.js"></script>
+
+    <script>
+        mocha.setup('tdd');
+        var assert = chai.assert;
+    </script>
+    <script src="/qa/globals.js"></script>
+    {{#if pageTestScript}}
+    <script src="{{pageTestScript}}"></script>
+    {{/if}}
+
+    <script>
+        mocha.checkLeaks();
+        mocha.globals(['jQuery']);
+        mocha.run();
+    </script>
+    {{/if}}
 
 </body>
 </html>
