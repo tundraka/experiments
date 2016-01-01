@@ -9,6 +9,7 @@ var fortune = require('./lib/fortune');
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
+app.disable('x-powered-by');
 
 // And from the note in github:
 // "Setting the app's "view engine" setting will make that value the default
@@ -32,6 +33,18 @@ app.get('/', function(req, res) {
         title: 'Medowlark: home',
     });
 });
+
+app.get('/headers', function(req, res) {
+    var s = '';
+
+    s += req.acceptedLanguage;
+    for (header in req.headers) {
+        s += header + ':' + req.headers[header] + '\n';
+    };
+
+    res.set('Content-Type', 'text/plain');
+    res.send(s);
+})
 
 app.get('/about', function(req, res) {
     res.render('about', {
