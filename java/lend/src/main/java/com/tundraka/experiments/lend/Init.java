@@ -13,6 +13,6 @@ public class Init {
         lender.borrow(book2);
         lender.borrow(book3);
 
-        System.out.println(lender.totalBorrowed());
+        System.out.println(lender.totalBorrowed()); // 2
     }
 }

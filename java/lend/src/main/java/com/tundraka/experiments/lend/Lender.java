@@ -27,6 +27,6 @@ public class Lender<T extends Lendable> {
     }
 
     public boolean canBorrow(T item) {
-        return item && !item.isLended() && items.size() < MAX_LENDED;
+        return item != null && !item.isLended() && items.size() < MAX_LENDED;
     }
 }
