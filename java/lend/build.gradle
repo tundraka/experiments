@@ -1,1 +1,10 @@
 apply plugin: 'java'
+task hello
+
+hello << {
+    print 'Hello, '
+}
+
+hello << {
+    println 'World!'
+}

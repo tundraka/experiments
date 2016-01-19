@@ -1,4 +1,4 @@
-package com.tundraka.experiments.lend;
+package com.tundraka.experiments.lend.item;
 
 public class Copy {
 	private long id;

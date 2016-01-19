@@ -1,6 +1,6 @@
-package com.tundraka.experiments.lend;
+package com.tundraka.experiments.lend.item;
 
-interface Lendable {
+public interface Lendable {
     public boolean isAvailable();
     public void lend();
     public void restore();
