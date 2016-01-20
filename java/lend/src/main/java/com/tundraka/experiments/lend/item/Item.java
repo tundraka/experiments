@@ -5,9 +5,10 @@ public class Item {
 	private boolean available;
 	private Lendable item;
 	
-	public Item(long itemId, boolean available, Lendable item) {
+	public Item(long itemId, Lendable item) {
 		this.itemId = itemId;
 		this.item = item;
+		available = true;
 	}
 
 	public long getItemId() {
@@ -16,6 +17,10 @@ public class Item {
 
 	public Lendable getItem() {
 		return item;
+	}
+	
+	public boolean isAvailable() {
+		return available;
 	}
 
 	@Override

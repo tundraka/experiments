@@ -1,11 +1,7 @@
 package com.tundraka.experiments.lend.item;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Book implements Lendable {
 	private long bookId;
-	private boolean borrowed;
     private String name;
 
     public Book(String name) {
@@ -16,16 +12,4 @@ public class Book implements Lendable {
     public String getName() {
         return name;
     }
-    
-    public void lend() {
-    	this.borrowed = true;
     }
-
-    public boolean isAvailable() {
-        return borrowed;
-    }
-
-    public void restore() {
-        borrowed = false;
-    }
-}
