@@ -1,5 +1,6 @@
 /**
  * Javascript primitives:
+ * o\t
  * undefined, null, boolean, number or string
  */
 'use strict';
