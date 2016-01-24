@@ -17,12 +17,20 @@
             border: 1px solid #999;
             padding: 5px;
         }
+
+        .content input:required:invalid {
+            border: 5px solid red;
+        }
+
+        .content input:required:valid {
+            border: 5px solid green;
+        }
     </style>
     <script src="text.js"></script>
 </head>
 <body>
     <div class="content">
-        <input type="text" class="formatted" pattern="\d{4}-\d{4}" placeholder="####-####" />
+        <input type="text" class="formatted" required="required" pattern="\d{4}-\d{4}" placeholder="####-####" />
     </div>
 </body>
 </html>

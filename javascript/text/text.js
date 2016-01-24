@@ -2,6 +2,7 @@
     var domLoadInterval;
     var textElement;
     var position;
+    var currentValue;
     var initStates = ['interactive', 'complete'];
 
     // . any
@@ -9,12 +10,67 @@
     // ! symbols
 
     function keyDown(e) {
+        console.log('----DO------');
+        console.log('random=' + Math.random());
         console.log('length=' + textElement.value.length);
-         console.log('char=' + e.char);
-         console.log('key=' + e.key);
-         console.log('charCode=' + e.charCode);
-         console.log('keyCode=' + e.keyCode);
-         console.log('------------');
+        console.log('value=' + textElement.value);
+        //console.log('char=' + e.char);
+        console.log('key=' + e.key);
+        //console.log('charCode=' + e.charCode);
+        //console.log(keyCode=' + e.keyCode);
+    }
+
+    function getRegExp(pattern) {
+        var regEx = null;
+
+        switch(pattern) {
+            case '#': regEx = /\d/; break;
+            default: regEx = null;
+        }
+
+        return regEx;
+    }
+
+    function findNextValidChar(pattern, inputValue) {
+        var re = getRegExp(pattern);
+        var validChar = pattern;
+
+        if (re === null) {
+            return {nextChar: validChar, inputValue: inputValue};
+        }
+
+        for (var i = 0; i < inputValue.length; i ++) {
+            var currentChar = inputValue.charAt(i);
+            if (currentChar.match(re)) {
+                validChar = currentChar;
+                break; 
+            }
+        }
+
+        return {nextChar: validChar, inputValue: inputValue.slice(i + 1)}
+    }
+
+    function input(e) {
+        //console.log('-----IN------');
+        //console.log('value=' + textElement.value);
+
+        var text = e.target;
+        var currentChar = '';
+        var currentPatternChar = '';
+        var inputValue = text.value;
+        var visualValue = '';
+
+        for (var i = 0; i < options.pattern.length; i ++) {
+            currentPatternChar = options.pattern.charAt(i)
+            var nextValidChar = findNextValidChar(currentPatternChar, inputValue);
+
+            visualValue += nextValidChar.nextChar;
+            inputValue = nextValidChar.inputValue;
+
+            if (inputValue === '') { break; }
+        }
+
+        text.value = visualValue;
     }
 
     function init() {
@@ -26,7 +82,7 @@
 
         if (textElements && textElements.length > 0) {
             textElement = textElements[0];
-            textElement.addEventListener('keyup', keyDown);
+            textElement.addEventListener('input', input);
         }
     }
 
@@ -39,5 +95,5 @@
 
 })({
     className: 'formatted',
-    format: '####-####'
+    pattern: '####-####'
 });
