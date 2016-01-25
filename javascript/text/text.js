@@ -1,8 +1,6 @@
 (function(options) {
     var domLoadInterval;
     var textElement;
-    var position;
-    var currentValue;
     var initStates = ['interactive', 'complete'];
 
     // . any
@@ -33,10 +31,10 @@
 
     function findNextValidChar(pattern, inputValue) {
         var re = getRegExp(pattern);
-        var validChar = pattern;
+        var validChar = '';
 
         if (re === null) {
-            return {nextChar: validChar, inputValue: inputValue};
+            return {nextChar: pattern, inputValue: inputValue};
         }
 
         for (var i = 0; i < inputValue.length; i ++) {
@@ -51,9 +49,6 @@
     }
 
     function input(e) {
-        //console.log('-----IN------');
-        //console.log('value=' + textElement.value);
-
         var text = e.target;
         var currentChar = '';
         var currentPatternChar = '';
@@ -82,6 +77,7 @@
 
         if (textElements && textElements.length > 0) {
             textElement = textElements[0];
+            textElement.placeholder = options.pattern;
             textElement.addEventListener('input', input);
         }
     }
@@ -95,5 +91,5 @@
 
 })({
     className: 'formatted',
-    pattern: '####-####'
+    pattern: '#### #### #### ####'
 });
