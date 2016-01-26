@@ -3,6 +3,8 @@
     var textElement;
     var initStates = ['interactive', 'complete'];
 
+    var completedEvent = new Event('completed');
+
     // . any
     // # number
     // ! symbols
@@ -54,6 +56,7 @@
         var currentPatternChar = '';
         var inputValue = text.value;
         var visualValue = '';
+        var completed = true;
 
         for (var i = 0; i < options.pattern.length; i ++) {
             currentPatternChar = options.pattern.charAt(i)
@@ -62,7 +65,14 @@
             visualValue += nextValidChar.nextChar;
             inputValue = nextValidChar.inputValue;
 
-            if (inputValue === '') { break; }
+            if (inputValue === '') {
+                completed = false;
+                break;
+            }
+        }
+
+        if (completed) {
+            text.dispatchEvent(completedEvent);
         }
 
         text.value = visualValue;
@@ -83,7 +93,6 @@
     }
 
     domLoadInterval = setInterval(function() {
-        console.log(document.readyState);
         if (initStates.includes(document.readyState)) {
             init();
         }

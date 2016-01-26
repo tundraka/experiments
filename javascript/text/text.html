@@ -29,8 +29,18 @@
     <script src="text.js"></script>
 </head>
 <body>
-    <div class="content">
-        <input type="text" class="formatted" required="required" pattern="\d{4}-\d{4}" placeholder="####-####" />
+    <div class="content" id='maincontainer'>
+        <input type="text" class="formatted" required="required" />
     </div>
+
+
+    <script>
+        var mainContainer = document.getElementById('maincontainer');
+        var text = mainContainer.getElementsByClassName('formatted')[0];
+
+        text.addEventListener('completed', function() {
+            console.log('completed');
+        });
+    </script>
 </body>
 </html>
