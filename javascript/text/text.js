@@ -9,17 +9,6 @@
     // # number
     // ! symbols
 
-    function keyDown(e) {
-        console.log('----DO------');
-        console.log('random=' + Math.random());
-        console.log('length=' + textElement.value.length);
-        console.log('value=' + textElement.value);
-        //console.log('char=' + e.char);
-        console.log('key=' + e.key);
-        //console.log('charCode=' + e.charCode);
-        //console.log(keyCode=' + e.keyCode);
-    }
-
     function getRegExp(pattern) {
         var regEx = null;
 
@@ -52,7 +41,6 @@
 
     function input(e) {
         var text = e.target;
-        var currentChar = '';
         var currentPatternChar = '';
         var inputValue = text.value;
         var visualValue = '';
@@ -100,5 +88,6 @@
 
 })({
     className: 'formatted',
-    pattern: '#### #### #### ####'
+    pattern: '(###) ###-####'
+    //pattern: '#### #### #### ####'
 });

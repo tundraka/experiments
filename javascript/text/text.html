@@ -38,8 +38,8 @@
         var mainContainer = document.getElementById('maincontainer');
         var text = mainContainer.getElementsByClassName('formatted')[0];
 
-        text.addEventListener('completed', function() {
-            console.log('completed');
+        text.addEventListener('completed', function(e) {
+            console.log('completed ' + e.target.value);
         });
     </script>
 </body>
