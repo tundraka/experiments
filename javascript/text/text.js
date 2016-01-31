@@ -5,6 +5,10 @@
 
     var completedEvent = new Event('completed');
 
+    if (typeof options === 'object') {
+        options = [options];
+    }
+
     // . any
     // # number
     // ! symbols
@@ -54,11 +58,11 @@
             inputValue = nextValidChar.inputValue;
 
             if (inputValue === '') {
-                completed = false;
                 break;
             }
         }
 
+                completed = false;
         if (completed) {
             text.dispatchEvent(completedEvent);
         }
@@ -86,8 +90,10 @@
         }
     }, 10);
 
-})({
-    className: 'formatted',
-    pattern: '(###) ###-####'
-    //pattern: '#### #### #### ####'
-});
+})([
+    {
+        className: 'formatted',
+        pattern: '(###) ###-####'
+        //pattern: '#### #### #### ####'
+    }
+]);
