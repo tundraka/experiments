@@ -1,6 +1,7 @@
 (function(options) {
     var domLoadInterval;
     var textElement;
+    var textElements = [];
     var initStates = ['interactive', 'complete'];
 
     var completedEvent = new Event('completed');
@@ -74,6 +75,12 @@
         if (domLoadInterval) {
             clearInterval(domLoadInterval);
         }
+
+        options.forEach(function(element) {
+            textElements.push({
+                element: 
+            });
+        });
 
         var textElements = document.getElementsByClassName(options.className);
 
