@@ -1,6 +1,5 @@
 (function(options) {
     var domLoadInterval;
-    var textElement;
     var textElements = [];
     var initStates = ['interactive', 'complete'];
 
@@ -63,12 +62,29 @@
             }
         }
 
-                completed = false;
+        completed = false;
         if (completed) {
             text.dispatchEvent(completedEvent);
         }
 
         text.value = visualValue;
+    }
+
+    function getTextElement(element) {
+        var selected = null;
+        var texts, text;
+
+        if (!element) {
+            return selected;
+        }
+
+        texts = document.getElementsByClassName(options.className);
+        if (texts && texts.length > 0) {
+            text = texts[0];
+            text.placeholder = options.pattern;
+            text.addEventListener('input', input);
+        }
+        
     }
 
     function init() {
@@ -77,18 +93,18 @@
         }
 
         options.forEach(function(element) {
+            var text = getTextElement(element);
+            if (!text) {
+                continue;
+            }
+
             textElements.push({
-                element: 
+                element: text,
+                pattern
             });
         });
 
-        var textElements = document.getElementsByClassName(options.className);
 
-        if (textElements && textElements.length > 0) {
-            textElement = textElements[0];
-            textElement.placeholder = options.pattern;
-            textElement.addEventListener('input', input);
-        }
     }
 
     domLoadInterval = setInterval(function() {
