@@ -30,16 +30,21 @@
 </head>
 <body>
     <div class="content" id='maincontainer'>
-        <input type="text" class="formatted" required="required" />
+        <input type="text" class="phone" required="required" data-mask="(###) ###-####"/>
+        <input type="text" class="cc" required="required" data-mask="#### #### #### ####"/>
     </div>
 
 
     <script>
         var mainContainer = document.getElementById('maincontainer');
-        var text = mainContainer.getElementsByClassName('formatted')[0];
+        var phone = mainContainer.getElementsByClassName('phone')[0];
+        var cc = mainContainer.getElementsByClassName('cc')[0];
 
-        text.addEventListener('completed', function(e) {
-            console.log('completed ' + e.target.value);
+        phone.addEventListener('completed', function(e) {
+            console.log('phone completed ' + e.target.value);
+        });
+        cc.addEventListener('completed', function(e) {
+            console.log('cc completed ' + e.target.value);
         });
     </script>
 </body>

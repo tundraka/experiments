@@ -1,12 +1,11 @@
-(function(options) {
+(function(elements) {
     var domLoadInterval;
-    var textElements = [];
     var initStates = ['interactive', 'complete'];
 
     var completedEvent = new Event('completed');
 
-    if (typeof options === 'object') {
-        options = [options];
+    if (!Array.isArray(elements) && typeof elements === 'object') {
+        elements = [elements];
     }
 
     // . any
@@ -47,11 +46,12 @@
         var text = e.target;
         var currentPatternChar = '';
         var inputValue = text.value;
+        var mask = text.dataset.mask;
         var visualValue = '';
         var completed = true;
 
-        for (var i = 0; i < options.pattern.length; i ++) {
-            currentPatternChar = options.pattern.charAt(i)
+        for (var i = 0; i < mask.length; i ++) {
+            currentPatternChar = mask.charAt(i)
             var nextValidChar = findNextValidChar(currentPatternChar, inputValue);
 
             visualValue += nextValidChar.nextChar;
@@ -70,21 +70,26 @@
         text.value = visualValue;
     }
 
-    function getTextElement(element) {
+    function initializeTextElement(element) {
         var selected = null;
-        var texts, text;
+        var texts;
 
         if (!element) {
             return selected;
         }
 
-        texts = document.getElementsByClassName(options.className);
+        texts = document.getElementsByClassName(element.className);
         if (texts && texts.length > 0) {
-            text = texts[0];
-            text.placeholder = options.pattern;
-            text.addEventListener('input', input);
+            selected = texts[0];
+
+            // if we have a mask, we initialize, otherwise, ignore.
+            if (selected.dataset.mask) {
+                selected.placeholder = element.pattern;
+                selected.addEventListener('input', input);
+            }
         }
-        
+
+        return selected;
     }
 
     function init() {
@@ -92,19 +97,9 @@
             clearInterval(domLoadInterval);
         }
 
-        options.forEach(function(element) {
-            var text = getTextElement(element);
-            if (!text) {
-                continue;
-            }
-
-            textElements.push({
-                element: text,
-                pattern
-            });
+        elements.forEach(function(element) {
+            initializeTextElement(element);
         });
-
-
     }
 
     domLoadInterval = setInterval(function() {
@@ -115,8 +110,11 @@
 
 })([
     {
-        className: 'formatted',
+        className: 'phone',
         pattern: '(###) ###-####'
-        //pattern: '#### #### #### ####'
+    },
+    {
+        className: 'cc',
+        pattern: '#### #### #### ####'
     }
 ]);
