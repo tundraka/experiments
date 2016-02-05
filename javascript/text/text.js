@@ -1,16 +1,5 @@
-(function(elements) {
-    var domLoadInterval;
-    var initStates = ['interactive', 'complete'];
-
+var TextMask = function TextMask() {
     var completedEvent = new Event('completed');
-
-    if (!Array.isArray(elements) && typeof elements === 'object') {
-        elements = [elements];
-    }
-
-    // . any
-    // # number
-    // ! symbols
 
     function getRegExp(pattern) {
         var regEx = null;
@@ -92,9 +81,9 @@
         return selected;
     }
 
-    function init() {
-        if (domLoadInterval) {
-            clearInterval(domLoadInterval);
+    function initializeElements(elements) {
+        if (!Array.isArray(elements) && typeof elements === 'object') {
+            elements = [elements];
         }
 
         elements.forEach(function(element) {
@@ -102,19 +91,7 @@
         });
     }
 
-    domLoadInterval = setInterval(function() {
-        if (initStates.includes(document.readyState)) {
-            init();
-        }
-    }, 10);
-
-})([
-    {
-        className: 'phone',
-        pattern: '(###) ###-####'
-    },
-    {
-        className: 'cc',
-        pattern: '#### #### #### ####'
-    }
-]);
+    return {
+        initializeElements: initializeElements
+    };
+};

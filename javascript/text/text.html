@@ -26,7 +26,6 @@
             border: 5px solid green;
         }
     </style>
-    <script src="text.js"></script>
 </head>
 <body>
     <div class="content" id='maincontainer'>
@@ -35,10 +34,20 @@
     </div>
 
 
+    <script src="text.js"></script>
     <script>
+        var text = new TextMask();
         var mainContainer = document.getElementById('maincontainer');
         var phone = mainContainer.getElementsByClassName('phone')[0];
         var cc = mainContainer.getElementsByClassName('cc')[0];
+
+        text.initializeElements([{
+            className: 'phone',
+            pattern: '(###) ###-####'
+        }, {
+            className: 'cc',
+            pattern: '#### #### #### ####'
+        }]);
 
         phone.addEventListener('completed', function(e) {
             console.log('phone completed ' + e.target.value);
