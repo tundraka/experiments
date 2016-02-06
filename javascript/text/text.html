@@ -41,13 +41,9 @@
         var phone = mainContainer.getElementsByClassName('phone')[0];
         var cc = mainContainer.getElementsByClassName('cc')[0];
 
-        text.initializeElements([{
-            className: 'phone',
-            pattern: '(###) ###-####'
-        }, {
-            className: 'cc',
-            pattern: '#### #### #### ####'
-        }]);
+        text.
+            addElement({className: 'phone', pattern: '(###) ###-####'}).
+            addElement({className: 'cc', pattern: '#### #### #### ####'});
 
         phone.addEventListener('completed', function(e) {
             console.log('phone completed ' + e.target.value);

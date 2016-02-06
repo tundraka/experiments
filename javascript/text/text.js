@@ -87,11 +87,22 @@ var TextMask = function TextMask() {
         }
 
         elements.forEach(function(element) {
-            initializeTextElement(element);
+            addElement(element);
         });
     }
 
+    function addElement(element) {
+        if (!element || typeof element !== 'object') {
+            return this;
+        }
+
+        initializeTextElement(element);
+
+        return this;
+    }
+
     return {
-        initializeElements: initializeElements
+        initializeElements: initializeElements,
+        addElement: addElement
     };
 };
