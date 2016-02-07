@@ -60,14 +60,14 @@
     }
 
     function initializeTexts() {
+        // we look for texts that have a data-mask attribute.
         var texts = document.querySelectorAll('input[type=text][data-mask]');
-        var totalTexts = texts && texts.length ? texts.length : 0;
+        var totalTexts = texts && texts.length || 0;
 
         if (totalTexts === 0) {
             return;
         }
 
-        // we look for texts that have a data-mask attribute.
         for (var i = 0; i < totalTexts; i ++) {
             var text = texts[i];
 
