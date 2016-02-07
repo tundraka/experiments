@@ -31,19 +31,13 @@
     <div class="content" id='maincontainer'>
         <input type="text" class="phone" required="required" data-mask="(###) ###-####"/>
         <input type="text" class="cc" required="required" data-mask="#### #### #### ####"/>
+        <input type="text" class="zip" required="required" >
     </div>
 
-
-    <script src="text.js"></script>
     <script>
-        var text = new TextMask();
         var mainContainer = document.getElementById('maincontainer');
         var phone = mainContainer.getElementsByClassName('phone')[0];
         var cc = mainContainer.getElementsByClassName('cc')[0];
-
-        text.
-            addElement({className: 'phone', pattern: '(###) ###-####'}).
-            addElement({className: 'cc', pattern: '#### #### #### ####'});
 
         phone.addEventListener('completed', function(e) {
             console.log('phone completed ' + e.target.value);
@@ -52,5 +46,6 @@
             console.log('cc completed ' + e.target.value);
         });
     </script>
+    <script src="text.js"></script>
 </body>
 </html>

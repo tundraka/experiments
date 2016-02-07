@@ -1,4 +1,4 @@
-var TextMask = function TextMask() {
+(function TextMask() {
     var completedEvent = new Event('completed');
 
     function getRegExp(pattern) {
@@ -31,11 +31,11 @@ var TextMask = function TextMask() {
         return {nextChar: validChar, inputValue: inputValue.slice(i + 1)}
     }
 
-    function input(e) {
+    function inputHandler(e) {
         var text = e.target;
-        var currentPatternChar = '';
         var inputValue = text.value;
         var mask = text.dataset.mask;
+        var currentPatternChar = '';
         var visualValue = '';
         var completed = true;
 
@@ -59,50 +59,25 @@ var TextMask = function TextMask() {
         text.value = visualValue;
     }
 
-    function initializeTextElement(element) {
-        var selected = null;
-        var texts;
+    function initializeTexts() {
+        var inputs = document.getElementsByTagName('input');
+        var totalInputs = inputs && inputs.length ? inputs.length : 0;
 
-        if (!element) {
-            return selected;
+        if (totalInputs === 0) {
+            return;
         }
 
-        texts = document.getElementsByClassName(element.className);
-        if (texts && texts.length > 0) {
-            selected = texts[0];
+        // we look for texts that have a data-mask attribute.
+        for (var i = 0; i < totalInputs; i ++) {
+            var input = inputs[i];
 
-            // if we have a mask, we initialize, otherwise, ignore.
-            if (selected.dataset.mask) {
-                selected.placeholder = element.pattern;
-                selected.addEventListener('input', input);
+            if (input && input.getAttribute('type') === 'text' &&
+                input.dataset && input.dataset.mask) {
+                input.placeholder = input.dataset.mask;
+                input.addEventListener('input', inputHandler);
             }
         }
-
-        return selected;
     }
 
-    function initializeElements(elements) {
-        if (!Array.isArray(elements) && typeof elements === 'object') {
-            elements = [elements];
-        }
-
-        elements.forEach(function(element) {
-            addElement(element);
-        });
-    }
-
-    function addElement(element) {
-        if (!element || typeof element !== 'object') {
-            return this;
-        }
-
-        initializeTextElement(element);
-
-        return this;
-    }
-
-    return {
-        initializeElements: initializeElements,
-        addElement: addElement
-    };
-};
+    initializeTexts();
+})();
