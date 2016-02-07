@@ -60,21 +60,20 @@
     }
 
     function initializeTexts() {
-        var inputs = document.getElementsByTagName('input');
-        var totalInputs = inputs && inputs.length ? inputs.length : 0;
+        var texts = document.querySelectorAll('input[type=text][data-mask]');
+        var totalTexts = texts && texts.length ? texts.length : 0;
 
-        if (totalInputs === 0) {
+        if (totalTexts === 0) {
             return;
         }
 
         // we look for texts that have a data-mask attribute.
-        for (var i = 0; i < totalInputs; i ++) {
-            var input = inputs[i];
+        for (var i = 0; i < totalTexts; i ++) {
+            var text = texts[i];
 
-            if (input && input.getAttribute('type') === 'text' &&
-                input.dataset && input.dataset.mask) {
-                input.placeholder = input.dataset.mask;
-                input.addEventListener('input', inputHandler);
+            if (text) {
+                text.placeholder = text.dataset.mask;
+                text.addEventListener('input', inputHandler);
             }
         }
     }
