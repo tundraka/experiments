@@ -37,7 +37,7 @@
         var mask = text.dataset.mask;
         var currentPatternChar = '';
         var visualValue = '';
-        var completed = true;
+        var completed = false;
 
         for (var i = 0; i < mask.length; i ++) {
             currentPatternChar = mask.charAt(i)
@@ -47,12 +47,12 @@
             inputValue = nextValidChar.inputValue;
 
             if (inputValue === '') {
+                completed = true;
                 break;
             }
         }
 
-        completed = false;
-        if (completed) {
+        if (completed || i === mask.length) {
             text.dispatchEvent(completedEvent);
         }
 
