@@ -47,16 +47,15 @@
             inputValue = nextValidChar.inputValue;
 
             if (inputValue === '') {
-                completed = true;
                 break;
             }
         }
 
+        text.value = visualValue;
+
         if (completed || i === mask.length) {
             text.dispatchEvent(completedEvent);
         }
-
-        text.value = visualValue;
     }
 
     function initializeTexts() {
