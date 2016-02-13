@@ -1,12 +1,5 @@
 body {
     /*background-position: 25% 0;*/
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% auto;
-}
-
-.container {
-    width: 750px;
-    margin: 10 auto;
-    background-color: 
+    font-family: sans-serif;
+    font-size: 2em;
 }
