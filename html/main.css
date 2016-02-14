@@ -7,6 +7,11 @@ body {
     background-color: #546;
 }
 
+a, a:visited {
+    font-family: monospace;
+    color: 0;
+}
+
 .container {
     width: 567px;
     margin: 0 auto;
