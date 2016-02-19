@@ -3,7 +3,7 @@ body {
     font-size: 1em;
     padding: 0;
     margin: 0;
-    background-color: #546;
+    background-color: @bgColor;
 }
 
 a, a:visited {
@@ -14,4 +14,24 @@ a, a:visited {
 .container {
     width: 100%;
     margin: 0;
+
+    .body {
+        background-color: @containerBgColor;
+
+        .entry {
+            .meta {
+                text-align: right;
+
+                h5 {
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+
+            .links {
+                text-align: right;
+                padding-right: 20px;
+            }
+        }
+    }
 }

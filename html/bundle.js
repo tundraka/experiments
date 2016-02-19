@@ -44,22 +44,23 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(3);
+	__webpack_require__(4);
 
 
 /***/ },
 /* 1 */,
 /* 2 */,
-/* 3 */
+/* 3 */,
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(4);
+	var content = __webpack_require__(5);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(6)(content, {});
+	var update = __webpack_require__(7)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -76,21 +77,21 @@
 	}
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(5)();
+	exports = module.exports = __webpack_require__(6)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "@media screen and (min-width: 769px) {\n  body {\n    font-family: sans-serif;\n    font-size: 1em;\n    padding: 0;\n    margin: 0;\n    background-color: #546;\n  }\n  a,\n  a:visited {\n    font-family: monospace;\n    color: 0;\n  }\n  .container {\n    width: 567px;\n    margin: 0 auto;\n  }\n  .container .body {\n    padding-bottom: 20px;\n    background-color: #678;\n  }\n  .container .body .entry .meta {\n    width: 217px;\n    float: left;\n    font-size: 12px;\n    margin: 0;\n    text-align: right;\n  }\n  .container .body .entry .content {\n    overflow: auto;\n    width: 350px;\n    line-height: 25px;\n  }\n  .container .body .entry .content .title {\n    font-size: 100%;\n    border-bottom: 1px solid #999;\n    padding: 0 20px;\n  }\n  .container .body .entry .content .title h1 {\n    margin: 10px 0 0 0;\n  }\n  .container .body .entry .content .title h4 {\n    font-weight: normal;\n    font-size: 80%;\n    font-style: italic;\n    margin: 0;\n  }\n  .container .body .entry .content .text {\n    padding: 0 20px;\n  }\n  .container .body .entry .content .text p {\n    text-indent: 40px;\n    padding: 5px 0;\n  }\n  .container .body .entry .links {\n    text-align: right;\n    font-size: 12px;\n  }\n  .container .footer {\n    height: 40px;\n    bottom: 0;\n    right: 0;\n    font-size: 12px;\n  }\n}\n@media screen and (max-width: 768px) {\n  body {\n    font-family: sans-serif;\n    font-size: 1em;\n    padding: 0;\n    margin: 0;\n    background-color: #546;\n  }\n  a,\n  a:visited {\n    font-family: monospace;\n    color: 0;\n  }\n  .container {\n    width: 100%;\n    margin: 0;\n  }\n}\n", ""]);
+	exports.push([module.id, "@media screen and (min-width: 769px) {\n  body {\n    font-family: sans-serif;\n    font-size: 1em;\n    padding: 0;\n    margin: 0;\n    background-color: #546;\n  }\n  a,\n  a:visited {\n    font-family: monospace;\n    color: 0;\n  }\n  .container {\n    width: 567px;\n    margin: 0 auto;\n  }\n  .container .body {\n    padding-bottom: 20px;\n    background-color: #678;\n  }\n  .container .body .entry .meta {\n    width: 217px;\n    float: left;\n    font-size: 12px;\n    margin: 0;\n    text-align: right;\n  }\n  .container .body .entry .content {\n    overflow: auto;\n    width: 350px;\n    line-height: 25px;\n  }\n  .container .body .entry .content .title {\n    font-size: 100%;\n    border-bottom: 1px solid #999;\n    padding: 0 20px;\n  }\n  .container .body .entry .content .title h1 {\n    margin: 10px 0 0 0;\n  }\n  .container .body .entry .content .title h4 {\n    font-weight: normal;\n    font-size: 80%;\n    font-style: italic;\n    margin: 0;\n  }\n  .container .body .entry .content .text {\n    padding: 0 20px;\n  }\n  .container .body .entry .content .text p {\n    text-indent: 40px;\n    padding: 5px 0;\n  }\n  .container .body .entry .links {\n    text-align: right;\n    font-size: 12px;\n  }\n  .container .footer {\n    height: 40px;\n    bottom: 0;\n    right: 0;\n    font-size: 12px;\n  }\n}\n@media screen and (max-width: 768px) {\n  body {\n    font-family: sans-serif;\n    font-size: 1em;\n    padding: 0;\n    margin: 0;\n    background-color: #546;\n  }\n  a,\n  a:visited {\n    font-family: monospace;\n    color: 0;\n  }\n  .container {\n    width: 100%;\n    margin: 0;\n  }\n  .container .body {\n    background-color: #678;\n  }\n  .container .body .entry .meta {\n    text-align: right;\n  }\n  .container .body .entry .meta h5 {\n    padding: 0;\n    margin: 0;\n  }\n  .container .body .entry .links {\n    text-align: right;\n    padding-right: 20px;\n  }\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 	/*
@@ -146,7 +147,7 @@
 
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
