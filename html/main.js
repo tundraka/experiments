@@ -1,1 +1,1 @@
-require('./main.less');
+require('./less/main.less');
