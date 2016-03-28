@@ -8,7 +8,7 @@ actor Main
         env.out.print(tundraka.something)
 
 class Tundraka
-    let onConstructor: String
+    let onConstructor: String = "cancion"
     var something: String
     var _private: String
 
